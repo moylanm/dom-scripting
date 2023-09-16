@@ -15,13 +15,18 @@ function prepareGallery() {
 }
 
 function showPic(whichPic) {
+  if (!document.getElementById("placeholder")) return false;
+
   var source = whichPic.getAttribute("href");
   var placeholder = document.getElementById("placeholder");
   placeholder.setAttribute("src", source);
 
-  var text = whichPic.getAttribute("title");
-  var description = document.getElementById("description");
-  description.firstChild.nodeValue = text;
+  if (document.getElementById("description")) {
+    var text = whichPic.getAttribute("title");
+    var description = document.getElementById("description");
+    description.firstChild.nodeValue = text;
+  }
+  return true;
 }
 
 window.onload = prepareGallery;
