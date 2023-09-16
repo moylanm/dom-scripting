@@ -18,12 +18,15 @@ function showPic(whichPic) {
 
   var source = whichPic.getAttribute("href");
   var placeholder = document.getElementById("placeholder");
+  if (placeholder.nodeName != "IMG") return false;
   placeholder.setAttribute("src", source);
 
   if (document.getElementById("description")) {
     var text = whichPic.getAttribute("title");
     var description = document.getElementById("description");
-    description.firstChild.nodeValue = text;
+    if (description.firstChild.nodeType == 3) {
+      description.firstChild.nodeValue = text;
+    }
   }
   return true;
 }
